@@ -12,7 +12,30 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
-		return null;
+		String result = null;
+		Statement stmt = null;
+		String tableName = "chatbotDB.keywordtable";
+		String query = "SELECT response" +
+						"WHERE LOWER(keyword) = " + text.toLowerCase() +
+						"FROM " + tableName;
+		try {
+			stmt = getConnection().stmt;
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				result = rs.getString("response");
+			}
+		} catch (SQLException e) {
+			log.info("SQLException in  query: {}", e.toString());
+		} finally {
+			try{
+				if(stmt != null) {stmt.close();}
+			} catch (SQLException ex){
+				log.info("SQLException while closing: {}", ex.toString());
+			}
+		}
+		if(result != null)
+			return result;
+		throw new Exception("NOT FOUND");
 	}
 	
 	
