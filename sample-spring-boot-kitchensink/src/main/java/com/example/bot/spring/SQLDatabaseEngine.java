@@ -14,9 +14,9 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 		//Write your code here
 		String result = null;
 		Statement stmt = null;
-		String tableName = "chatbotDB.keywordtable";
+		String tableName = "keywordtable";
 		String query = "SELECT response" +
-						"WHERE LOWER(keyword) = " + text.toLowerCase() +
+						"WHERE keyword = " + text +
 						"FROM " + tableName;
 		try {
 			stmt = getConnection().createStatement();
