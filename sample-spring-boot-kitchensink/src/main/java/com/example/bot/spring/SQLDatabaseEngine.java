@@ -16,7 +16,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 		Statement stmt = null;
 		String tableName = "keywordtable";
 		String query = "SELECT response" +
-						"WHERE keyword = " + text +
+						"WHERE keyword = \'" + text +"\'" +
 						"FROM " + tableName;
 		try {
 			stmt = getConnection().createStatement();
