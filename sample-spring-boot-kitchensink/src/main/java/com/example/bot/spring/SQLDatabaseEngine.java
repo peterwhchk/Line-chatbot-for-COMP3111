@@ -19,7 +19,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 						"WHERE LOWER(keyword) = " + text.toLowerCase() +
 						"FROM " + tableName;
 		try {
-			stmt = getConnection().stmt;
+			stmt = getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				result = rs.getString("response");
