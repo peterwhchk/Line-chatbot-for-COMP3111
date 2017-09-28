@@ -21,7 +21,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 		try {
 			stmt = getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next()) {
+			if (rs.next()) {
 				result = rs.getString("response");
 			}
 		} catch (SQLException e) {
