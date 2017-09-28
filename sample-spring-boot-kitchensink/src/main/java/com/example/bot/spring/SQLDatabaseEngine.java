@@ -17,7 +17,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 		String tableName = "keywordtable";
 		String query = "SELECT response" +
 						" FROM " + tableName +
-						" WHERE keyword = '" + text + "'";
+						" WHERE LOWER(keyword) = '" + text.toLowerCase() + "'";
 		try {
 			stmt = getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery(query);
